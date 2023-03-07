@@ -10,6 +10,7 @@ const {
   getAllUsers,
   getById,
   create,
+  getAll,
 } = require('../controllers');
 const {
   validatePasswordLength,
@@ -22,6 +23,8 @@ const { validateName } = require('../middlewares/validateCategory');
 
 loginRoute.post('/', login);
 
+userRoute.get('/', validateToken, getAllUsers);
+userRoute.get('/:id', validateGetId, validateToken, getById);
 userRoute.post(
   '/',
   validatePasswordLength,
@@ -30,9 +33,7 @@ userRoute.post(
   createUser,
 );
 
-userRoute.get('/', validateToken, getAllUsers);
-userRoute.get('/:id', validateGetId, validateToken, getById);
-
 categoryRoute.post('/', validateName, validateToken, create);
+categoryRoute.get('/', validateToken, getAll);
 
 module.exports = { loginRoute, userRoute, categoryRoute };

@@ -3,6 +3,16 @@ const { categoryService } = require('../services');
 
 const CREATED = 201;
 const INTERNAL_SERVER_ERROR = 500;
+const OK_STATUS = 200;
+
+const getAll = async (_req, res) => {
+  try {
+    const categories = await categoryService.getAll();
+    return res.status(OK_STATUS).json(categories);
+  } catch (err) {
+    res.status(INTERNAL_SERVER_ERROR).json(err.message);
+  }
+};
 
 const create = async (req, res) => {
   try {
@@ -20,4 +30,5 @@ const create = async (req, res) => {
 
 module.exports = {
   create,
+  getAll,
 };
