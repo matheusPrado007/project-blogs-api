@@ -1,9 +1,11 @@
 const { User } = require('../models');
 
 const getAll = async () => {
-  const Users = await User.findAll();
+  const users = await User.findAll({
+    attributes: { exclude: 'password' },
+  });
 
-  return Users;
+  return users;
 };
 
 const getById = async (id) => {

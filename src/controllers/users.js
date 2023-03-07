@@ -4,6 +4,16 @@ const { createToken } = require('../auth/authFuctions');
 
 const CREATED = 201;
 const INTERNAL_SERVER_ERROR = 500;
+const OK_STATUS = 200;
+
+const getAllUsers = async (_req, res) => {
+  try {
+    const users = await userService.getAll();
+    return res.status(OK_STATUS).json(users);
+  } catch (err) {
+    res.status(INTERNAL_SERVER_ERROR).json(err.message);
+  }
+};
 
 const createUser = async (req, res) => {
   try {
@@ -22,4 +32,4 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser };
+module.exports = { createUser, getAllUsers };
