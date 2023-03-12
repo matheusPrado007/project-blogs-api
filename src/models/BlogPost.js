@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       updated: DataTypes.DATE,
       userId: {
         type: DataTypes.INTEGER,
-        foreignKey: true,
+        primaryKey: true,
       },
     },
     {
@@ -21,15 +21,9 @@ module.exports = (sequelize, DataTypes) => {
   BlogPost.associate = (models) => {
     BlogPost.belongsTo(models.User, {
       foreignKey: { name: "userId", field: "user_id" },
-      as: "users",
+      as: "user",
     });
   };
 
-  BlogPost.associate = (models) => {
-    BlogPost.hasMany(models.PostCategory, {
-      foreignKey: "postId",
-      as: "PostCategories",
-    });
-  };
   return BlogPost;
 };

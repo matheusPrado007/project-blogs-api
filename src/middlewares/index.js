@@ -6,6 +6,7 @@ const {
 const { validateToken } = require('./validateToken');
 
 const { validateGetId } = require('./validateUserId');
+const { validatePost, validateField } = require('./validatePost');
 
 module.exports = {
   validateEmail,
@@ -13,4 +14,6 @@ module.exports = {
   validatedisplayNameLength,
   validateToken,
   validateGetId,
+  validatePost,
+  validateField,
 };
